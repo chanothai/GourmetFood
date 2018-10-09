@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Food Fantasy</string>
+    <string name="detail_app_name">This restaurant gives you some food amazing.</string>
+    <string name="name_food_test">Smoked Beef Ribs</string>
+    <string name="detail_food_test">Seafood is always so appetizing</string>
+    <string name="price_food_test">100</string>
+    <string name="title_total_price">Your total</string>
+    <string name="topic_total_price">Total</string>
+    <string name="msg_btn_payment">Confirm</string>
+
+    <string name="qty_food_test">5</string>
+
+    <string name="currency_dollar">THB</string>
+
+    <string name="txt_btn_add">ADD TO CART</string>
+
+    <string name="title_name">Name: </string>
+    <string name="title_menu_detail">รายละเอียด</string>
+
+    <string name="title_cart">CART SHOP</string>
+    <string name="title_order_detail_th">รายละเอียดการสั่งซื้อ</string>
+    <string name="title_payment">Payment</string>
+
+    <string name="test_describe_food">There have been many claims about the origin of the hamburger,
+        but the origins remain unclear.The popular book "The Art of Cookery made Plain and Easy" by Hannah Glasse included a recipe in 1758 as "Hamburgh sausage",
+        which suggested to serve it "roasted with toasted bread under it".
+        A similar snack was also popular in Hamburg by the name "Rundstück warm" ("bread roll warm") in 1869 or earlier,
+        and supposedly eaten by many emigrants on their way to America, but may have contained roasted beefsteak rather than Frikadeller.
+        Hamburg steak is reported to have been served between two pieces of bread on the Hamburg America Line, which began operations in 1847.
+        Each of these may mark the invention of the Hamburger, and explain the name. Hamburger Hamburger (black bg).jpg Course	Main coursePlace of origin	Germany (disputed)Created by Multiple claims (see text)
+        Serving temperature	Hot Main ingredients Ground meat, bread Cookbook: Hamburger Media: Hamburger A hamburger, beefburger or burger is a sandwich consisting of one or more cooked patties of ground meat, usually beef,
+        placed inside a sliced bread roll or bun. The patty may be pan fried, grilled, or flame broiled.</string>
+
+    <string name="title_menu_cart">cart_menu</string>
+    <string name="dialog_loading">LOADING....</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_menu">menu</string>
+    <string name="navigation_cart">cart</string>
+    <string name="navigation_order">order</string>
+    <string name="title_list_cart">รายการ</string>
+    <string name="title_payment_type">ชำระเงินผ่านบัตรเครดิต</string>
+    <string name="txt_btn_confirm">CONFIRM ORDER</string>
+
+
+    <string name="topic_card_number">เลขบัตร</string>
+    <string name="hint_card_number">บัตร Visa/Master card</string>
+    <string name="topic_card_name">ชื่อ</string>
+    <string name="hint_card_name">ขื่อที่แสดงบนบัตร</string>
+    <string name="topic_card_expired">วันหมดอายุ</string>
+    <string name="hint_card_expired">MM/YY</string>
+    <string name="topic_card_cvv">เลข CVV</string>
+    <string name="hint_card_cvv">กรอกเลข CVV</string>
+
+    <string name="title_menu_th">รายการอาหาร</string>
+    <string name="title_cart_th">รายการที่คุณเลือก</string>
+    <string name="msg_empty_state">ยังไม่มีสินค้า</string>
+    <string name="title_btn_select_menu">เลือกเมนู</string>
+    <string name="title_toolbar_list_order">รายการสั่งซื้อ</string>
+    <string name="msg_order_empty_state">ยังไม่มีประวัติการสั่งซื้อ</string>
+    <string name="msg_left_credit_card">ช่องทางการชำระเงิน</string>
+    <string name="msg_right_credit_card">บัตรเครดิต/เดบิต</string>
+    <string name="txt_btn_signin">SIGN IN</string>
+    <string name="txt_btn_signup">SIGN UP</string>
+    <string name="txt_username">username</string>
+    <string name="txt_password">password</string>
+    <string name="hint_gender">gender</string>
+    <string name="txt_btn_register">Register</string>
+    <string name="txt_forgot_password">Change Password</string>
+    <string name="txt_old_password">old password</string>
+    <string name="txt_new_password">new password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="txt_code_verified">code verified</string>
+    <string name="welcome">WELCOME</string>
+</resources>

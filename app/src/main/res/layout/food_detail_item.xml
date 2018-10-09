@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:paddingTop="@dimen/small_padding_layout"
+    android:paddingBottom="@dimen/small_padding_layout"
+    android:paddingStart="@dimen/medium_padding_layout"
+    android:paddingEnd="@dimen/medium_padding_layout">
+
+    <ImageView
+        android:id="@+id/food_item_img"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </RelativeLayout>
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/food_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_padding_layout"
+        android:gravity="start|center"
+        android:textSize="@dimen/small_font"
+        android:textColor="@color/color_font_dark"
+        android:text="@string/name_food_test"
+        />
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/food_item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center"
+        android:textSize="@dimen/small_font"
+        android:textColor="@color/color_font_soft"
+        android:text="@string/price_food_test"
+        android:layout_marginBottom="8dp"/>
+
+
+</LinearLayout>

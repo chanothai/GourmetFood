@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:id="@+id/product_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:textSize="@dimen/medium_font"
+            android:textColor="@color/color_font_dark"
+            android:text="product_name"
+            android:padding="@dimen/small_padding_layout"/>
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:id="@+id/product_item_qty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/medium_font"
+            android:textColor="@color/color_font_dark"
+            android:text="product_qty"
+            android:padding="@dimen/small_padding_layout"/>
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:id="@+id/product_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end|center"
+            android:textSize="@dimen/medium_font"
+            android:textColor="@color/color_font_dark"
+            android:text="product_price"
+            android:padding="@dimen/small_padding_layout"/>
+
+    </LinearLayout>
+
+</LinearLayout>

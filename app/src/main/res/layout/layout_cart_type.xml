@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:padding="@dimen/large_padding_layout">
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:id="@+id/cart_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_font_dark"
+            android:textSize="@dimen/small_font"
+            android:gravity="start|end"
+            android:text="@string/name_food_test"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_remove_qty"
+                android:layout_width="@dimen/size_btn_small"
+                android:layout_height="@dimen/size_btn_small"
+                android:layout_gravity="center"
+                android:background="@drawable/selector_btn_remove_cart"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <onedaycat.com.food.fantasy.customview.CustomTextView
+                android:id="@+id/cart_item_qty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/qty_food_test"
+                android:textSize="@dimen/small_font"
+                android:gravity="center"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_add_qty"
+                android:layout_width="@dimen/size_btn_small"
+                android:layout_height="@dimen/size_btn_small"
+                android:layout_gravity="center"
+                android:background="@drawable/round_btn_add_qty_selector"/>
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

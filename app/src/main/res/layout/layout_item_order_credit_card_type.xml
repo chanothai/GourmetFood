@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/large_padding_layout"
+    android:paddingEnd="@dimen/large_padding_layout"
+    android:paddingTop="@dimen/medium_padding_layout"
+    android:paddingBottom="@dimen/medium_padding_layout"
+    android:background="@color/color_bg_white">
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/color_font_dark"
+        android:textSize="@dimen/small_font"
+        android:padding="@dimen/small_padding_layout"
+        android:text="@string/msg_left_credit_card"/>
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:textColor="@color/color_font_dark"
+        android:textSize="@dimen/small_font"
+        android:padding="@dimen/small_padding_layout"
+        android:text="@string/msg_right_credit_card"/>
+</LinearLayout>

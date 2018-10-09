@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/large_padding_layout"
+    android:paddingEnd="@dimen/large_padding_layout"
+    android:paddingTop="@dimen/medium_padding_layout"
+    android:paddingBottom="@dimen/medium_padding_layout"
+    android:background="@color/color_bg_white">
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/order_item_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_font_dark"
+        android:textSize="@dimen/small_font"
+        android:gravity="start|end"
+        android:padding="@dimen/small_padding_layout"
+        android:text="@string/title_order_detail_th"/>
+
+</FrameLayout>

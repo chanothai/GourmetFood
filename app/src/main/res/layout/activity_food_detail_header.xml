@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <ImageView
+        android:id="@+id/detail_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <View
+        android:id="@+id/view_ghost"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_font_dark"
+        android:alpha="0.5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/view_ghost"
+        android:layout_alignBottom="@+id/view_ghost"
+        android:padding="@dimen/medium_padding_layout">
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/title_name"
+            android:textSize="@dimen/medium_font"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/color_bg_white"/>
+
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:id="@+id/detail_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:text="@string/name_food_test"
+            android:textSize="@dimen/medium_font"
+            android:gravity="center_vertical"
+            android:textAllCaps="true"
+            android:textColor="@color/color_bg_white"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/color_bg_white"
+        android:padding="@dimen/medium_padding_layout">
+
+        <onedaycat.com.food.fantasy.customview.CustomTextView
+            android:id="@+id/detail_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_font_dark"
+            android:textSize="@dimen/large_x2_font"
+            android:text="@string/price_food_test"
+            android:gravity="center" />
+    </FrameLayout>
+
+</RelativeLayout>

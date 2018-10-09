@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="onedaycat.com.food.fantasy.fantasy.ui.splashscreen.SplashScreen">
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/customTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:textSize="@dimen/large_x2_font"
+        android:textColor="@color/color_font_dark"/>
+</android.support.constraint.ConstraintLayout>

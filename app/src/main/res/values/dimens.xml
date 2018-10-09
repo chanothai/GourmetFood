@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radius_image">10dp</dimen>
+    <dimen name="small_padding_layout">4dp</dimen>
+    <dimen name="medium_padding_layout">8dp</dimen>
+    <dimen name="large_padding_layout">16dp</dimen>
+
+    <dimen name="height_item_layout">150dp</dimen>
+
+    <dimen name="smallest_font">12sp</dimen>
+    <dimen name="small_font">16sp</dimen>
+    <dimen name="medium_font">20sp</dimen>
+    <dimen name="large_font">26sp</dimen>
+    <dimen name="large_x2_font">36sp</dimen>
+
+
+    <dimen name="dialog_loading_circle_progress_size">64dp</dimen>
+
+    <dimen name="float_button_default_size">56dp</dimen>
+    <dimen name="float_button_min_size">40dp</dimen>
+
+    <dimen name="size_btn_small">24dp</dimen>
+    <dimen name="fixed_height_layout_bottom">115dp</dimen>
+
+</resources>

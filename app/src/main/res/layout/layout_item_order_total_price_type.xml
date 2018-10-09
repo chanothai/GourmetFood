@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/large_padding_layout"
+    android:paddingEnd="@dimen/large_padding_layout"
+    android:paddingTop="@dimen/medium_padding_layout"
+    android:paddingBottom="@dimen/medium_padding_layout"
+    android:background="@color/color_bg_white">
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:textColor="@color/color_font_dark"
+        android:textSize="@dimen/small_font"
+        android:padding="@dimen/small_padding_layout"
+        android:gravity="start"
+        android:text="@string/topic_total_price"/>
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/order_item_total_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/small_font"
+        android:padding="@dimen/small_padding_layout"
+        android:gravity="end"
+        android:text="@string/price_food_test"/>
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/large_padding_layout"
+    android:background="@color/color_bg_white"
+    tools:context="onedaycat.com.food.fantasy.fantasy.ui.cart.fragment.CartFragment">
+
+    <include
+        android:id="@+id/container_empty_state"
+        layout="@layout/layout_empty_state"
+        android:visibility="gone"/>
+
+    <include
+        layout="@layout/recyclerview_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_card_bottom"
+        android:padding="@dimen/small_padding_layout" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/layout_card_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fixed_height_layout_bottom"
+        android:background="@color/color_bg_white"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/large_padding_layout"
+            android:paddingStart="@dimen/large_padding_layout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/small_padding_layout"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <onedaycat.com.food.fantasy.customview.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/topic_total_price"
+                    android:textColor="@color/color_font_dark"
+                    android:textSize="@dimen/medium_font" />
+
+                <onedaycat.com.food.fantasy.customview.CustomTextView
+                    android:id="@+id/cart_total_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@string/price_food_test"
+                    android:textColor="@color/color_font_dark"
+                    android:textSize="@dimen/medium_font" />
+
+            </LinearLayout>
+
+            <onedaycat.com.food.fantasy.customview.CustomButtonView
+                android:id="@+id/btn_confirm_order"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/large_padding_layout"
+                android:layout_marginTop="@dimen/medium_padding_layout"
+                android:layout_weight="0.6"
+                android:background="@drawable/btn_round_add_to_cart_selector"
+                android:text="@string/txt_btn_confirm"
+                android:textAllCaps="false"
+                android:textColor="@color/color_bg_white"
+                android:textSize="@dimen/small_font" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

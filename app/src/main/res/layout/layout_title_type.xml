@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/title_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_list_cart"
+        android:textSize="@dimen/small_font"
+        android:textColor="@color/color_font_dark"
+        android:gravity="start|center"
+        android:paddingStart="@dimen/large_padding_layout"
+        android:paddingEnd="@dimen/large_padding_layout"
+        android:paddingTop="@dimen/small_padding_layout"
+        android:paddingBottom="@dimen/small_padding_layout"
+        android:background="@color/color_bg_title"
+        />
+</FrameLayout>

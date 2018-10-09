@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:paddingStart="@dimen/large_padding_layout"
+    android:paddingEnd="@dimen/large_padding_layout"
+    android:paddingTop="@dimen/medium_padding_layout"
+    android:paddingBottom="@dimen/medium_padding_layout">
+
+    <onedaycat.com.food.fantasy.customview.CustomTextView
+        android:id="@+id/pay_item_topic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="start|center"
+        android:layout_weight="1"
+        android:textSize="@dimen/small_font"
+        android:textColor="@color/color_font_dark"
+        android:text="@string/title_name"
+        />
+
+    <EditText
+        android:id="@+id/pay_item_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:inputType="number"
+        android:background="@color/color_bg_white"
+        android:hint="@string/title_name"
+        android:textSize="@dimen/small_font"
+        android:padding="@dimen/small_padding_layout"/>
+
+
+</LinearLayout>

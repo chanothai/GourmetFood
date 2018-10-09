@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/large_padding_layout"
+    tools:context="onedaycat.com.food.fantasy.fantasy.ui.mainfood.fragment.MainMenuFragment">
+
+    <include
+        layout="@layout/recyclerview_and_swipe_refresh_layout"/>
+
+</FrameLayout>

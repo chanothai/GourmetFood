@@ -1,0 +1,113 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "$jacoco_version"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/*$[0-9].*'
+    ]
+
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ])
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions.includeCompileClasspath = true
+        }
+        multiDexEnabled true
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/java'
+        test.java.srcDirs += 'src/test/java'
+        androidTest.java.srcDirs += 'src/androidTest/java'
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+
+        release{
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-inline:2.15.0'
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation( 'com.google.firebase:firebase-firestore:17.1.0',{
+        exclude group: 'com.android.support'
+    })
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.25.0'
+
+    // Mobile Client for initializing the SDK
+    implementation('com.amazonaws:aws-android-sdk-mobile-client:2.7.0@aar') { transitive = true }
+
+    // Cognito UserPools for SignIn
+    implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.7.0@aar') { transitive = true }
+
+    // Sign in UI Library
+    implementation('com.amazonaws:aws-android-sdk-auth-ui:2.7.0@aar') { transitive = true }
+}
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'com.google.gms.google-services'
