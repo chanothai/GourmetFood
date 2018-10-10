@@ -1,8 +1,13 @@
 package onedaycat.com.foodfantasyservicelib.service
 
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import onedaycat.com.foodfantasyservicelib.entity.Product
 import onedaycat.com.foodfantasyservicelib.contract.repository.ProductPaging
 import onedaycat.com.foodfantasyservicelib.contract.repository.ProductRepo
+import onedaycat.com.foodfantasyservicelib.error.Errors
 import onedaycat.com.foodfantasyservicelib.input.CreateProductInput
 import onedaycat.com.foodfantasyservicelib.input.GetProductInput
 import onedaycat.com.foodfantasyservicelib.input.GetProductsInput
@@ -45,7 +50,7 @@ class ProductService(
         return productRepo.get(input.productId)
     }
 
-    fun getProducts(input: GetProductsInput): ProductPaging? {
+    suspend fun getProducts(input: GetProductsInput): ProductPaging {
         productValidate.inputLimitPaging(input)
 
         return productRepo.getAllWithPaging(input.limit)

@@ -1,5 +1,6 @@
 package onedaycat.com.food.fantasy.service
 
+import onedaycat.com.food.fantasy.api.graphql.ProductGraphQL
 import onedaycat.com.food.fantasy.oauth.OauthCognito
 import onedaycat.com.foodfantasyservicelib.contract.creditcard_payment.CreditCardMemoPayment
 import onedaycat.com.foodfantasyservicelib.contract.repository.*
@@ -29,7 +30,7 @@ class EcomService {
 
     var stockService = StockService(StockFireStore(OauthCognito()), StockMemoValidate())
 
-    var productService = ProductService(ProductFireStore(OauthCognito()), ProductMemoValidate())
+    var productService = ProductService(ProductGraphQL(OauthCognito()), ProductMemoValidate())
 
     var userService = UserService(UserFireStore(OauthCognito()), UserMemoryValidate())
 }

@@ -20,7 +20,7 @@ data class ProductPaging(
 interface ProductRepo {
     fun create(product: Product)
     fun remove(id: String)
-    fun getAllWithPaging(limit: Int): ProductPaging
+    suspend fun getAllWithPaging(limit: Int): ProductPaging
     fun get(id: String): Product
 }
 
@@ -67,7 +67,7 @@ class ProductFireStore(
         }
     }
 
-    override fun getAllWithPaging(limit: Int): ProductPaging {
+    override suspend fun getAllWithPaging(limit: Int): ProductPaging {
         try {
             oauth.validateToken()
             val documents = queryProduct(limit = limit)

@@ -3,6 +3,12 @@ package onedaycat.com.food.fantasy.api.graphql
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
+import com.google.android.gms.tasks.Tasks.await
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.IO
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import onedaycat.com.food.fantasy.CreateProductMutation
 import onedaycat.com.food.fantasy.GetProductsQuery
 import onedaycat.com.food.fantasy.network.ApolloHelper
@@ -11,6 +17,7 @@ import onedaycat.com.foodfantasyservicelib.contract.repository.ProductPaging
 import onedaycat.com.foodfantasyservicelib.contract.repository.ProductRepo
 import onedaycat.com.foodfantasyservicelib.entity.Product
 import onedaycat.com.foodfantasyservicelib.error.Errors
+import kotlin.coroutines.experimental.suspendCoroutine
 
 class ProductGraphQL(
         private val oauthAdapter: OauthAdapter
@@ -30,8 +37,8 @@ class ProductGraphQL(
             }
 
             override fun onResponse(response: Response<CreateProductMutation.Data>) {
-                response.data()?.let {body->
-                    body.createProduct()?.let {data->
+                response.data()?.let { body ->
+                    body.createProduct()?.let { data ->
                         data
                     }
                 }
@@ -43,33 +50,30 @@ class ProductGraphQL(
 
     }
 
-    override fun getAllWithPaging(limit: Int): ProductPaging {
+    override suspend fun getAllWithPaging(limit: Int): ProductPaging {
         val accessToken = oauthAdapter.validateToken()
 
-        var productPaging: ProductPaging? = null
+        return suspendCoroutine { cont->
+            val apolloCallback = object : ApolloCall.Callback<GetProductsQuery.Data>() {
+                override fun onFailure(e: ApolloException) {
+                    cont.resumeWithException(e)
+                    throw e
+                }
 
-        ApolloHelper.setup(accessToken.token).query(GetProductsQuery
-                .builder()
-                .build()).enqueue(object: ApolloCall.Callback<GetProductsQuery.Data>() {
-            override fun onFailure(e: ApolloException) {
-                throw e
-            }
-
-            override fun onResponse(response: Response<GetProductsQuery.Data>) {
-
-                response.data()?.let {body->
-                    body.products?.products()?.let {data->
-                        productPaging = ProductPaging(mapProducts(data))
+                override fun onResponse(response: Response<GetProductsQuery.Data>) {
+                    response.data()?.let { body ->
+                        body.products?.let { data ->
+                            val productPaging = ProductPaging(mapProducts(data.products()))
+                            cont.resume(productPaging)
+                        }
                     }
                 }
             }
-        })
 
-        productPaging?.let {
-            return it
+            ApolloHelper.setup(accessToken.token).query(GetProductsQuery
+                    .builder()
+                    .build()).enqueue(apolloCallback)
         }
-
-        throw Errors.ProductNotFound
     }
 
     private fun mapProducts(items: MutableList<GetProductsQuery.Product>): MutableList<Product> {
@@ -79,23 +83,13 @@ class ProductGraphQL(
             throw Errors.ProductNotFound
         }
 
-        for (item in items){
+        for (item in items) {
             val product = Product().apply {
-                item.name()?.let {name->
-                    this.name = name
-                }
 
-                item.desc()?.let {desc->
-                    this.desc = desc
-                }
-
-                item.price()?.let {price->
-                    this.price = price
-                }
-
-                item.image()?.let {img->
-                    this.image = img
-                }
+                this.name = item.name() ?: throw Errors.ProductNotFound
+                this.desc = item.desc() ?: throw Errors.ProductNotFound
+                this.price = item.price() ?: throw Errors.ProductNotFound
+                this.image = item.image() ?: throw Errors.ProductNotFound
             }
 
             products.add(product)

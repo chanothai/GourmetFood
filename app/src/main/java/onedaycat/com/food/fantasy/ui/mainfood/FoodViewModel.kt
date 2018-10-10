@@ -55,17 +55,14 @@ class FoodViewModel(private val eComService: EcomService
 
     suspend fun loadProducts(input: GetProductsInput) {
         try {
-            var productPaging: ProductPaging? = null
+            val productPaging = eComService.productService.getProducts(input)
 
-            asyncTask { productPaging = eComService.productService.getProducts(input) }.await()
-//            productPaging = async { eComService.productService.getProducts(input) }.await()
-
-            productPaging?.let { foodPaging ->
+            productPaging.let { foodPaging ->
                 foodList.let { foods ->
                     when {
                         foods.size == 0 -> {
-                            val s = addFoodModel(foodPaging)
-                            _foodData.postValue(s)
+                            val fs = addFoodModel(foodPaging)
+                            _foodData.postValue(fs)
                         }
                     }
                 }
