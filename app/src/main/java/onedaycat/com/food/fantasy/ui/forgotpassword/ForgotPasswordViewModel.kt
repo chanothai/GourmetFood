@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
-import onedaycat.com.food.fantasy.service.CognitoService
+import onedaycat.com.food.fantasy.service.cognito.CognitoService
 import onedaycat.com.foodfantasyservicelib.entity.UserAuth
 import onedaycat.com.foodfantasyservicelib.input.GetConfirmPasswordInput
 import onedaycat.com.foodfantasyservicelib.input.GetUsernameInput

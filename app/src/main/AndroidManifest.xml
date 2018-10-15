@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="onedaycat.com.food.fantasy">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,15 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainfood.activity.MainActivity" />
+        <activity android:name=".ui.mainfood.activity.MainActivity" />
         <activity
-            android:name=".mainfood.activity.FoodDetailActivity"
+            android:name=".ui.mainfood.activity.FoodDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="onedaycat.com.food.fantasy.ui.order.OrderDetailActivity" />
-        <activity android:name="onedaycat.com.food.fantasy.ui.signin.SignInActivity"/>
-        <activity android:name="onedaycat.com.food.fantasy.ui.signup.SignUpActivity" />
-        <activity android:name="onedaycat.com.food.fantasy.ui.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name="onedaycat.com.food.fantasy.ui.splashscreen.SplashScreen">
+        <activity android:name=".ui.order.OrderDetailActivity" />
+        <activity android:name=".ui.signin.SignInActivity"/>
+        <activity android:name=".ui.signup.SignUpActivity" />
+        <activity android:name=".ui.forgotpassword.ForgotPasswordActivity" />
+        <activity android:name=".ui.splashscreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,5 +32,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

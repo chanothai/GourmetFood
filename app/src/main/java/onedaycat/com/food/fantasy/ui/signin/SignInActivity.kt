@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.activity_sign_in.w_btn_signup as btnSignUp
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import onedaycat.com.food.fantasy.R
-import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
-import onedaycat.com.food.fantasy.service.CognitoService
+import onedaycat.com.food.fantasy.service.cognito.CognitoService
 import onedaycat.com.food.fantasy.ui.forgotpassword.ForgotPasswordActivity
+import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
 import onedaycat.com.food.fantasy.ui.signup.SignUpActivity
 import onedaycat.com.food.fantasy.util.DateUtils
 import onedaycat.com.food.fantasy.util.SharedPreferenceHelper

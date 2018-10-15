@@ -3,6 +3,7 @@ package onedaycat.com.food.fantasy.ui.order
 import android.os.Parcel
 import android.os.Parcelable
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 data class OrderModel(
         var orderId: String? = null,
         var totalPrice: Int = 0,

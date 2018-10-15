@@ -8,7 +8,6 @@ import onedaycat.com.foodfantasyservicelib.entity.State
 import onedaycat.com.foodfantasyservicelib.error.Errors
 import onedaycat.com.foodfantasyservicelib.input.GetOrderInput
 import onedaycat.com.food.fantasy.service.EcomService
-import onedaycat.com.foodfantasyservicelib.service.OrderService
 import onedaycat.com.foodfantasyservicelib.util.clock.Clock
 import org.junit.Assert
 import org.junit.Before

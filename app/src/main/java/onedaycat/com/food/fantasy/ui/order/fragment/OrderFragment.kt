@@ -19,12 +19,12 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 
 import onedaycat.com.food.fantasy.R
-import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.ui.order.*
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.foodfantasyservicelib.input.GetOrderInput
 import onedaycat.com.food.fantasy.service.EcomService
+import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
 
 class OrderFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OrderItemClickListener {
     private lateinit var mainActivity: MainActivity
@@ -39,7 +39,6 @@ class OrderFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, OrderIte
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_order, container, false)
     }
-
 
     companion object {
         @JvmStatic

@@ -15,7 +15,7 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 
 import onedaycat.com.food.fantasy.R
-import onedaycat.com.food.fantasy.service.CognitoService
+import onedaycat.com.food.fantasy.service.cognito.CognitoService
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.foodfantasyservicelib.input.GetConfirmPasswordInput
 

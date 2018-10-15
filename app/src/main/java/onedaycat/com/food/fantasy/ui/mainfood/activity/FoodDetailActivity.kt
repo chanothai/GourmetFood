@@ -1,4 +1,4 @@
-package onedaycat.com.food.fantasy.mainfood.activity
+package onedaycat.com.food.fantasy.ui.mainfood.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -16,12 +16,12 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import onedaycat.com.food.fantasy.R
 import onedaycat.com.food.fantasy.common.BaseActivity
-import onedaycat.com.food.fantasy.mainfood.FoodModel
-import onedaycat.com.food.fantasy.mainfood.FoodViewModel
+import onedaycat.com.food.fantasy.ui.mainfood.FoodModel
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.foodfantasyservicelib.input.AddToCartInput
 import onedaycat.com.food.fantasy.service.EcomService
+import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
 
 fun Context.foodDetailActivity(foodModel: FoodModel): Intent {
     return Intent(this, FoodDetailActivity::class.java).apply {
@@ -122,6 +122,7 @@ class FoodDetailActivity : BaseActivity() {
                     userId,
                     foodModel.foodId,
                     foodModel.foodName,
+                    foodModel.foodPrice,
                     currentQTY
             )
 

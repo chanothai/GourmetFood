@@ -2,8 +2,8 @@ package onedaycat.com.food.fantasy.fantasy.ui.signin
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.experimental.runBlocking
-import onedaycat.com.food.fantasy.service.CognitoService
-import onedaycat.com.food.fantasy.service.UserAuthenticationService
+import onedaycat.com.food.fantasy.service.cognito.CognitoService
+import onedaycat.com.food.fantasy.service.cognito.UserAuthenticationService
 import onedaycat.com.foodfantasyservicelib.entity.User
 import onedaycat.com.foodfantasyservicelib.entity.UserCognito
 import onedaycat.com.foodfantasyservicelib.error.Errors

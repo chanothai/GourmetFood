@@ -1,6 +1,7 @@
 package onedaycat.com.food.fantasy.service
 
 import onedaycat.com.food.fantasy.api.cognito.CognitoUserRepo
+import onedaycat.com.food.fantasy.service.cognito.UserAuthenticationService
 import onedaycat.com.foodfantasyservicelib.entity.User
 import onedaycat.com.foodfantasyservicelib.entity.UserAuth
 import onedaycat.com.foodfantasyservicelib.entity.UserCognito

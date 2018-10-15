@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package onedaycat.com.food.fantasy.util
 
 import android.arch.lifecycle.ViewModel

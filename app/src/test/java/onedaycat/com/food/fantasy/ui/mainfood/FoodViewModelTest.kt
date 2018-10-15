@@ -1,11 +1,7 @@
-package onedaycat.com.food.fantasy.fantasy.ui.mainfood
+package onedaycat.com.food.fantasy.ui.mainfood
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.experimental.runBlocking
-import onedaycat.com.food.fantasy.mainfood.FoodListModel
-import onedaycat.com.food.fantasy.mainfood.FoodModel
-import onedaycat.com.food.fantasy.mainfood.FoodSumModel
-import onedaycat.com.food.fantasy.mainfood.FoodViewModel
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartLiveStores
 import onedaycat.com.food.fantasy.store.FoodCartStore
@@ -18,8 +14,9 @@ import onedaycat.com.foodfantasyservicelib.entity.ProductQTY
 import onedaycat.com.foodfantasyservicelib.entity.State
 import onedaycat.com.foodfantasyservicelib.error.Errors
 import onedaycat.com.foodfantasyservicelib.input.*
-import onedaycat.com.foodfantasyservicelib.service.CartService
 import onedaycat.com.food.fantasy.service.EcomService
+import onedaycat.com.food.fantasy.ui.cart.CartModel
+import onedaycat.com.foodfantasyservicelib.service.CartService
 import onedaycat.com.foodfantasyservicelib.service.PaymentService
 import onedaycat.com.foodfantasyservicelib.service.ProductService
 import onedaycat.com.foodfantasyservicelib.util.clock.Clock
@@ -37,7 +34,7 @@ class FoodViewModelTest {
     private lateinit var foodCartLiveStore: FoodCartLiveStores
     private lateinit var eComService: EcomService
 
-    private lateinit var cartService:CartService
+    private lateinit var cartService: CartService
     private lateinit var productService: ProductService
     private lateinit var paymentService: PaymentService
 
@@ -60,7 +57,7 @@ class FoodViewModelTest {
                 ))
         )
 
-        cartModel = onedaycat.com.food.fantasy.ui.cart.CartModel(
+        cartModel = CartModel(
                 "1111",
                 "Pork Potato",
                 250,
@@ -121,7 +118,7 @@ class FoodViewModelTest {
                     this.foodDesc = product.desc!!
                     this.foodIMG = product.image!!
                 })
-        ).also {expected->
+        ).also { expected->
 
             `when`(eComService.productService.getProducts(input)).thenReturn(productPaging)
 
@@ -302,6 +299,7 @@ class FoodViewModelTest {
                 "u1",
                 "1111",
                 "Pork Potato",
+                100,
                 10
         )
 
@@ -321,8 +319,8 @@ class FoodViewModelTest {
                 "u1",
                 "1111",
                 "Pork Potato",
-                10
-        )
+                100,
+                10)
 
         `when`(eComService.cartService.addProductCart(input)).thenThrow(Errors.UnableGetCart)
 

@@ -67,6 +67,7 @@ class AddToCartInput(
         var userID: String,
         var productID: String,
         var productName: String,
+        var price: Int,
         var qty: Int
 )
 

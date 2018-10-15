@@ -1,4 +1,4 @@
-package onedaycat.com.food.fantasy.mainfood
+package onedaycat.com.food.fantasy.ui.mainfood
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -12,15 +12,12 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import onedaycat.com.food.fantasy.R
-import onedaycat.com.food.fantasy.mainfood.FoodListModel
-import onedaycat.com.food.fantasy.mainfood.FoodModel
-import onedaycat.com.food.fantasy.ui.cart.CartModel
-import onedaycat.com.food.fantasy.mainfood.FoodViewModel
+import onedaycat.com.food.fantasy.ui.mainfood.FoodListModel
+import onedaycat.com.food.fantasy.ui.mainfood.FoodModel
 import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartStore
 import onedaycat.com.food.fantasy.fantasy.ui.cart.fragment.CartFragment
-import onedaycat.com.food.fantasy.fantasy.ui.order.*
 import onedaycat.com.food.fantasy.fantasy.ui.order.fragment.OrderFragment
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.foodfantasyservicelib.entity.Cart

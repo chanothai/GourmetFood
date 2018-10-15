@@ -8,7 +8,7 @@ import onedaycat.com.food.fantasy.ui.signin.SignInActivity
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler
 import onedaycat.com.food.fantasy.R
-import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
+import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
 import onedaycat.com.food.fantasy.util.CognitoUserHelper
 import java.lang.Exception
 

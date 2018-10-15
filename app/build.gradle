@@ -69,6 +69,17 @@ android {
             includeAndroidResources true
         }
     }
+
+    flavorDimensions "environment"
+    productFlavors {
+        firestore {
+            dimension "environment"
+        }
+
+        graphql {
+            dimension "environment"
+        }
+    }
 }
 
 repositories {

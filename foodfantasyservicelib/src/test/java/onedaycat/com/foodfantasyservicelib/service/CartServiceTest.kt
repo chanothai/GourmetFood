@@ -1,6 +1,5 @@
 package onedaycat.com.foodfantasyservicelib.service
 
-import onedaycat.com.foodfantasyservicelib.contract.repository.CartFireStore
 import onedaycat.com.foodfantasyservicelib.entity.*
 import onedaycat.com.foodfantasyservicelib.contract.repository.CartRepo
 import onedaycat.com.foodfantasyservicelib.contract.repository.StockRepo
@@ -8,16 +7,15 @@ import onedaycat.com.foodfantasyservicelib.error.*
 import onedaycat.com.foodfantasyservicelib.input.AddToCartInput
 import onedaycat.com.foodfantasyservicelib.input.GetCartInput
 import onedaycat.com.foodfantasyservicelib.input.RemoveFromCartInput
-import onedaycat.com.foodfantasyservicelib.validate.CartValidate
+import onedaycat.com.foodfantasyservicelib.validate.CartValidateAdapter
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.Mockito.*
 
 class CartServiceTest {
     private lateinit var cartService: CartService
-    private lateinit var cartValidate: CartValidate
+    private lateinit var cartValidateAdapter: CartValidateAdapter
     private lateinit var cartRepo: CartRepo
     private lateinit var stockRepo: StockRepo
 
@@ -31,10 +29,10 @@ class CartServiceTest {
 
     @Before
     fun setup() {
-        cartValidate = mock(CartValidate::class.java)
+        cartValidateAdapter = mock(CartValidateAdapter::class.java)
         cartRepo = mock(CartRepo::class.java)
         stockRepo = mock(StockRepo::class.java)
-        cartService = CartService(stockRepo, cartRepo, cartValidate)
+        cartService = CartService(stockRepo, cartRepo, cartValidateAdapter)
 
         stock = ProductStock().createProductStock("111", "Apple",50)!!
         stockWithPrice = ProductStockWithPrice(
@@ -72,7 +70,7 @@ class CartServiceTest {
         val newCart = Cart(input.userID,mutableListOf())
         newCart.addPQTY(newProductQTY(input.productID, "Apple",100,10), stock)
 
-        doNothing().`when`(cartValidate).inputCart(input)
+        doNothing().`when`(cartValidateAdapter).inputCart(input)
         `when`(cartRepo.getByUserID(input.userID)).thenReturn(newCart)
         `when`(stockRepo.getWithPrice(input.productID)).thenReturn(stockWithPrice)
         doNothing().`when`(cartRepo).upsert(expCart)
@@ -81,7 +79,7 @@ class CartServiceTest {
 
         Assert.assertEquals(expCart, actualCart)
 
-        verify(cartValidate).inputCart(input)
+        verify(cartValidateAdapter).inputCart(input)
         verify(cartRepo).getByUserID(input.userID)
         verify(stockRepo).getWithPrice(input.productID)
         verify(cartRepo).upsert(expCart)
@@ -89,14 +87,14 @@ class CartServiceTest {
 
     @Test(expected = InvalidInputException::class)
     fun `Add cart but validate failed`() {
-        `when`(cartValidate.inputCart(input)).thenThrow(Errors.InvalidInput)
+        `when`(cartValidateAdapter.inputCart(input)).thenThrow(Errors.InvalidInput)
 
         cartService.addProductCart(input)
     }
 
     @Test(expected = InternalError::class)
     fun `Add cart but get cart failed`() {
-        doNothing().`when`(cartValidate).inputCart(input)
+        doNothing().`when`(cartValidateAdapter).inputCart(input)
         `when`(cartRepo.getByUserID(input.userID)).thenThrow(Errors.UnableGetCart)
 
         cartService.addProductCart(input)
@@ -107,7 +105,7 @@ class CartServiceTest {
         val newCart = Cart(input.userID,mutableListOf())
         newCart.addPQTY(newProductQTY(input.productID, "Apple",100, 5), stock)
 
-        doNothing().`when`(cartValidate).inputCart(input)
+        doNothing().`when`(cartValidateAdapter).inputCart(input)
         `when`(cartRepo.getByUserID(input.userID)).thenReturn(newCart)
         `when`(stockRepo.getWithPrice(input.productID)).thenThrow(Errors.UnableGetProductStock)
 
@@ -119,7 +117,7 @@ class CartServiceTest {
         val newCart = Cart(input.userID,mutableListOf())
         newCart.addPQTY(newProductQTY(input.productID, "Apple",100, 5), stock)
 
-        doNothing().`when`(cartValidate).inputCart(input)
+        doNothing().`when`(cartValidateAdapter).inputCart(input)
         `when`(cartRepo.getByUserID(input.userID)).thenReturn(newCart)
         `when`(stockRepo.getWithPrice(input.productID)).thenReturn(stockWithPrice)
         `when`(cartRepo.upsert(expCart)).thenThrow(Errors.UnableSaveCart)
@@ -141,7 +139,7 @@ class CartServiceTest {
                 "222", "Apple",100, 5),
                 stock.newProductStock("222", "Apple",50)!!)
 
-        doNothing().`when`(cartValidate).inputRemoveCart(inputRemove)
+        doNothing().`when`(cartValidateAdapter).inputRemoveCart(inputRemove)
         `when`(cartRepo.getByUserID(inputRemove.userID)).thenReturn(newCart)
         `when`(stockRepo.getWithPrice(inputRemove.productID)).thenReturn(stockWithPrice)
         doNothing().`when`(cartRepo).upsert(expCart)
@@ -150,7 +148,7 @@ class CartServiceTest {
 
         Assert.assertEquals(expCart, actualCart)
 
-        verify(cartValidate).inputRemoveCart(inputRemove)
+        verify(cartValidateAdapter).inputRemoveCart(inputRemove)
         verify(cartRepo).getByUserID(inputRemove.userID)
         verify(stockRepo).getWithPrice(inputRemove.productID)
         verify(cartRepo).upsert(expCart)
@@ -158,14 +156,14 @@ class CartServiceTest {
 
     @Test(expected = InvalidInputException::class)
     fun `remove cart but validate failed`() {
-        `when`(cartValidate.inputRemoveCart(inputRemove)).thenThrow(Errors.InvalidInput)
+        `when`(cartValidateAdapter.inputRemoveCart(inputRemove)).thenThrow(Errors.InvalidInput)
 
         cartService.removeFromeCart(inputRemove)
     }
 
     @Test(expected = InternalError::class)
     fun `remove cart but get cart failed`() {
-        doNothing().`when`(cartValidate).inputRemoveCart(inputRemove)
+        doNothing().`when`(cartValidateAdapter).inputRemoveCart(inputRemove)
         `when`(cartRepo.getByUserID(inputRemove.userID)).thenThrow(Errors.UnableGetCart)
 
         cartService.removeFromeCart(inputRemove)
@@ -173,7 +171,7 @@ class CartServiceTest {
 
     @Test(expected = InternalError::class)
     fun `remove cart but get stock failed`() {
-        doNothing().`when`(cartValidate).inputRemoveCart(inputRemove)
+        doNothing().`when`(cartValidateAdapter).inputRemoveCart(inputRemove)
         `when`(cartRepo.getByUserID(inputRemove.userID)).thenReturn(expCart)
         `when`(stockRepo.getWithPrice(inputRemove.productID)).thenThrow(Errors.UnableGetProductStock)
 
@@ -184,7 +182,7 @@ class CartServiceTest {
     fun `remove cart failed`() {
         val newCart = Cart(inputRemove.userID,mutableListOf())
 
-        doNothing().`when`(cartValidate).inputRemoveCart(inputRemove)
+        doNothing().`when`(cartValidateAdapter).inputRemoveCart(inputRemove)
         `when`(cartRepo.getByUserID(inputRemove.userID)).thenReturn(newCart)
         `when`(stockRepo.getWithPrice(inputRemove.productID)).thenReturn(stockWithPrice)
 
@@ -202,7 +200,7 @@ class CartServiceTest {
         expCart.addPQTY(newProductQTY("222", "Apple",100, 5),
                 stock.newProductStock("222", "Apple",50)!!)
 
-        doNothing().`when`(cartValidate).inputRemoveCart(inputRemove)
+        doNothing().`when`(cartValidateAdapter).inputRemoveCart(inputRemove)
         `when`(cartRepo.getByUserID(inputRemove.userID)).thenReturn(newCart)
         `when`(stockRepo.getWithPrice(inputRemove.productID)).thenReturn(stockWithPrice)
         `when`(cartRepo.upsert(expCart)).thenThrow(Errors.UnableSaveCart)
@@ -216,27 +214,27 @@ class CartServiceTest {
         expCart = Cart(inputRemove.userID, mutableListOf())
         expCart.addPQTY(newProductQTY("111", "Apple",100,5), stock)
 
-        doNothing().`when`(cartValidate).inputGetCart(inputCart)
+        doNothing().`when`(cartValidateAdapter).inputGetCart(inputCart)
         `when`(cartRepo.getByUserID(input.userID)).thenReturn(expCart)
 
         val actualCart = cartService.getCartWithUserID(inputCart)
 
         Assert.assertEquals(expCart, actualCart)
 
-        verify(cartValidate).inputGetCart(inputCart)
+        verify(cartValidateAdapter).inputGetCart(inputCart)
         verify(cartRepo).getByUserID(input.userID)
     }
 
     @Test(expected = InvalidInputException::class)
     fun `get cart but validate failed`() {
-        `when`(cartValidate.inputGetCart(inputCart)).thenThrow(Errors.InvalidInput)
+        `when`(cartValidateAdapter.inputGetCart(inputCart)).thenThrow(Errors.InvalidInput)
 
         cartService.getCartWithUserID(inputCart)
     }
 
     @Test(expected = InternalError::class)
     fun `get cart failed`() {
-        doNothing().`when`(cartValidate).inputGetCart(inputCart)
+        doNothing().`when`(cartValidateAdapter).inputGetCart(inputCart)
         `when`(cartRepo.getByUserID(input.userID)).thenThrow(Errors.UnableGetCart)
 
         cartService.getCartWithUserID(inputCart)

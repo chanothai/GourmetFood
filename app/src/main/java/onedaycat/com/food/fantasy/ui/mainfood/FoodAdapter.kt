@@ -1,26 +1,17 @@
-package onedaycat.com.food.fantasy.mainfood
+package onedaycat.com.food.fantasy.ui.mainfood
 
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.PorterDuff
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.activity_food_detail_header.view.*
-import kotlinx.android.synthetic.main.food_detail_information.view.*
 import kotlinx.android.synthetic.main.food_detail_item.view.*
-import kotlinx.android.synthetic.main.food_img_item.view.*
 import onedaycat.com.food.fantasy.R
-import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
+import onedaycat.com.food.fantasy.mainfood.ItemClickedCallback
 
 class FoodAdapter(
         private val items: FoodListModel,

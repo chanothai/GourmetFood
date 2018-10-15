@@ -19,12 +19,12 @@ import kotlinx.coroutines.experimental.launch
 
 import onedaycat.com.food.fantasy.R
 import onedaycat.com.food.fantasy.mainfood.ItemClickedCallback
-import onedaycat.com.food.fantasy.mainfood.FoodAdapter
-import onedaycat.com.food.fantasy.mainfood.FoodModel
-import onedaycat.com.food.fantasy.mainfood.FoodViewModel
-import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
-import onedaycat.com.food.fantasy.mainfood.activity.foodDetailActivity
+import onedaycat.com.food.fantasy.ui.mainfood.FoodAdapter
+import onedaycat.com.food.fantasy.ui.mainfood.FoodModel
+import onedaycat.com.food.fantasy.ui.mainfood.activity.foodDetailActivity
 import onedaycat.com.food.fantasy.store.CartStore
+import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
+import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
 import onedaycat.com.foodfantasyservicelib.input.GetCartInput
 import onedaycat.com.foodfantasyservicelib.input.GetProductsInput
 
@@ -98,7 +98,6 @@ class MainMenuFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, ItemC
     private fun initViewModel() {
         foodViewModel = ViewModelProviders.of(mActivity).get(FoodViewModel::class.java)
         foodViewModel.let {
-            foodViewModel = it
             foodDataObserver()
             cartObserver()
         }

@@ -1,4 +1,4 @@
-package onedaycat.com.food.fantasy.mainfood.activity
+package onedaycat.com.food.fantasy.ui.mainfood.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.appbar_normal.*
 import kotlinx.android.synthetic.main.activity_main.bottom_bar as bottomBar
 import onedaycat.com.food.fantasy.R
 import onedaycat.com.food.fantasy.common.BaseActivity
-import onedaycat.com.food.fantasy.mainfood.FoodViewModel
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartStore
 import onedaycat.com.food.fantasy.ui.cart.fragment.CartFragment
@@ -27,6 +26,7 @@ import onedaycat.com.food.fantasy.ui.signin.SignInActivity
 import onedaycat.com.food.fantasy.util.CognitoUserHelper
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.food.fantasy.service.EcomService
+import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
 
 class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener {
 
