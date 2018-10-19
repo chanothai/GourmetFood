@@ -15,6 +15,7 @@ import onedaycat.com.food.fantasy.ui.mainfood.FoodListModel
 import onedaycat.com.food.fantasy.ui.mainfood.FoodModel
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartStore
+import onedaycat.com.food.fantasy.ui.cart.CartFragment
 import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
 import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
 import onedaycat.com.food.fantasy.ui.order.*
