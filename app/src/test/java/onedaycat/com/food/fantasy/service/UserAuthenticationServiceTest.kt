@@ -45,7 +45,6 @@ class UserAuthenticationServiceTest {
                 time,
                 time
         )
-
     }
 
     @Test

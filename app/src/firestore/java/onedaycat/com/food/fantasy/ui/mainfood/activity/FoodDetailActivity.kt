@@ -19,9 +19,10 @@ import onedaycat.com.food.fantasy.common.BaseActivity
 import onedaycat.com.food.fantasy.ui.mainfood.FoodModel
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.util.ViewModelUtil
-import onedaycat.com.foodfantasyservicelib.input.AddToCartInput
 import onedaycat.com.food.fantasy.service.EcomService
 import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
+import onedaycat.com.foodfantasyservicelib.input.AddCartsToCartInput
+import onedaycat.com.foodfantasyservicelib.input.AddToCartInput
 
 fun Context.foodDetailActivity(foodModel: FoodModel): Intent {
     return Intent(this, FoodDetailActivity::class.java).apply {

@@ -142,15 +142,9 @@ class MainMenuFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, ItemC
                 foodRecyclerView.adapter = foodAdapter
             }
 
-            with(CartStore) {
-                val input = GetCartInput(
-                        foodCart?.userId!!
-                )
-
-                if (this.foodCart?.cartList?.size == 0) {
-                    launch(UI) {
-                        foodViewModel.loadCart(input)
-                    }
+            if (CartStore.foodCart?.cartList?.size == 0) {
+                launch(UI) {
+//                    foodViewModel.loadCart()
                 }
             }
         })

@@ -1,4 +1,4 @@
-package onedaycat.com.food.fantasy.ui.cart.fragment
+package onedaycat.com.food.fantasy.ui.cart
 
 
 import android.arch.lifecycle.Observer
@@ -17,9 +17,6 @@ import kotlinx.coroutines.experimental.launch
 
 import onedaycat.com.food.fantasy.R
 import onedaycat.com.food.fantasy.store.CartStore
-import onedaycat.com.food.fantasy.ui.cart.CartAdapter
-import onedaycat.com.food.fantasy.ui.cart.CartModel
-import onedaycat.com.food.fantasy.ui.cart.OnActionCartListener
 import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
 import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
 import onedaycat.com.foodfantasyservicelib.contract.creditcard_payment.CreditCard

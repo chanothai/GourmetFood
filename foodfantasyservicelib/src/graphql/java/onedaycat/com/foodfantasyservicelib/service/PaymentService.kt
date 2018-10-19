@@ -21,7 +21,7 @@ class PaymentService(private val orderRepo: OrderRepo,
                      private val paymentRepo: PaymentRepo,
                      private val paymentValidate: PaymentValidate) {
 
-    fun charge(input: ChargeInput): Order? {
+    suspend fun charge(input: ChargeInput): Order? {
         paymentValidate.inputCharge(input)
 
         //get all product stock

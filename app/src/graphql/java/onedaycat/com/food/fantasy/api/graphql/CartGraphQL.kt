@@ -20,15 +20,16 @@ class CartGraphQL(
     override suspend fun upsert(productQTY: ProductQTY) {
         val accessToken = oauthAdapter.validateToken()
 
-        suspendCoroutine<Unit> {cont->
+        suspendCoroutine<String> {cont->
             val apolloCallBack = object : ApolloCall.Callback<AddToCartMutation.Data>() {
                 override fun onFailure(e: ApolloException) {
                     cont.resumeWithException(e)
+                    throw e
                 }
 
                 override fun onResponse(response: Response<AddToCartMutation.Data>) {
                     response.data()?.let {body->
-
+                        cont.resume(body.addToCart() ?: "")
                     }
                 }
             }
@@ -54,9 +55,26 @@ class CartGraphQL(
                     response.data()?.let { body->
                         val products = body.cart?.products()
 
+                        val listProductQTY = arrayListOf<ProductQTY>()
                         products?.let {list->
                             for (product in list) {
+                                ProductQTY().apply {
+                                    this.productId = product.product()?.id() ?: ""
+                                    this.productName = product.product()?.name() ?: ""
+                                    this.price = product.product()?.price() ?: 0
+                                    this.qty = product.qty() ?: 0
+                                }.also {
+                                    listProductQTY.add(it)
+                                }
+                            }
 
+                            listProductQTY
+                        }?.also {listPQTY->
+                            Cart().apply {
+                                this.userId = accessToken.token
+                                this.products = listPQTY
+                            }.run {
+                                cont.resume(this)
                             }
                         }
                     }

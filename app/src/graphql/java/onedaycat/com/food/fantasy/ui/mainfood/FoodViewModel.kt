@@ -4,6 +4,7 @@ import android.arch.lifecycle.*
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
+import onedaycat.com.food.fantasy.service.EcomService
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartLiveStores
 import onedaycat.com.foodfantasyservicelib.contract.creditcard_payment.CreditCard
@@ -12,7 +13,6 @@ import onedaycat.com.foodfantasyservicelib.entity.Cart
 import onedaycat.com.foodfantasyservicelib.entity.Order
 import onedaycat.com.foodfantasyservicelib.error.Error
 import onedaycat.com.foodfantasyservicelib.input.*
-import onedaycat.com.food.fantasy.service.cognito.EcomService
 import onedaycat.com.food.fantasy.ui.cart.CartModel
 import onedaycat.com.foodfantasyservicelib.entity.ProductQTY
 
@@ -90,48 +90,13 @@ class FoodViewModel(private val eComService: EcomService
         return FoodListModel(foodList)
     }
 
-//    private fun addCartToStore(pQTY:ProductQTY) {
-//        pQTY.let {
-//            val cartStore = cartStore.value?.let { cartStore ->
-//                var qty = 0
-//                for (product in it.products) {
-//                    qty += product.qty
-//                }
-//
-//                cartStore.counter = qty
-//
-//                var totalPrice = 0
-//                val cartsModel = arrayListOf<CartModel>()
-//                for (item in it.products) {
-//                    CartModel().apply {
-//                        cartPId = item.productId
-//                        cartName = item.productName
-//                        cartQTY = item.qty
-//                        cartPrice = item.price
-//                        cartTotalPrice = item.price * item.qty
-//
-//                        totalPrice += cartTotalPrice
-//                    }.also {cartModel->
-//                        cartsModel.add(cartModel)
-//                    }
-//                }
-//
-//                _totalPrice.value = totalPrice
-//                cartStore.foodCart?.cartList = cartsModel
-//                cartStore
-//            }
-//
-//            FoodCartLiveStores.liveData.postValue(cartStore)
-//        }
-//    }
-
-    private fun addCartToStore(pQTY: ProductQTY) {
+    private fun addCartToStoreWithProductQTY(pQTY: ProductQTY) {
         pQTY.let {
             val cartStore = cartStore.value?.let { cartStore ->
-                cartStore.counter = pQTY.qty
+                cartStore.counter = cartStore.counter + pQTY.qty
 
                 var totalPrice = 0
-                val cartsModel = arrayListOf<CartModel>()
+
                 CartModel().apply {
                     cartPId = pQTY.productId
                     cartName = pQTY.productName
@@ -141,11 +106,10 @@ class FoodViewModel(private val eComService: EcomService
 
                     totalPrice += cartTotalPrice
                 }.also { cartModel ->
-                    cartsModel.add(cartModel)
+                    cartStore.foodCart?.cartList?.add(cartModel)
                 }
 
                 _totalPrice.value = totalPrice
-                cartStore.foodCart?.cartList = cartsModel
                 cartStore
             }
 
@@ -153,12 +117,45 @@ class FoodViewModel(private val eComService: EcomService
         }
     }
 
-    suspend fun loadCart(input: GetCartInput) {
-        try {
-            val cart = eComService.cartService.getCartWithUserID(input)
-            cart?.let {
-                //                addCartToStore(it)
+    private fun addCartToStoreWithCart(cart:Cart) {
+        cart.let {
+            cartStore.value?.let {cartStore ->
+                var qty = 0
+                for (product in it.products) {
+                    qty += product.qty
+                }
+
+                cartStore.counter = qty
+
+                var totalPrice = 0
+                val cartsModel = cartStore.foodCart?.cartList ?: arrayListOf()
+                for (item in it.products) {
+                    onedaycat.com.food.fantasy.ui.cart.CartModel().apply {
+                        cartPId = item.productId
+                        cartName = item.productName
+                        cartQTY = item.qty
+                        cartPrice = item.price
+                        cartTotalPrice = item.price * item.qty
+
+                        totalPrice += cartTotalPrice
+                    }.also {cartModel->
+                        cartsModel.add(cartModel)
+                    }
+                }
+
+                _totalPrice.value = totalPrice
+                cartStore.foodCart?.cartList = cartsModel
+                cartStore
+            }?.also {cartStore->
+                FoodCartLiveStores.liveData.postValue(cartStore)
             }
+        }
+    }
+
+    suspend fun loadCart() {
+        try {
+            val cart = eComService.cartService.getCarts()
+            addCartToStoreWithCart(cart)
 
         } catch (e: onedaycat.com.foodfantasyservicelib.error.Error) {
             _msgError.value = e.message
@@ -167,9 +164,10 @@ class FoodViewModel(private val eComService: EcomService
 
     suspend fun addAllProductCart(input: AddCartsToCartInput) {
         try {
-            val cart = eComService.cartService.addProductCarts(input)
+            val cart = eComService.cartService.addProductsToCart(input)
+
             cart.let {
-                _cartLiveData.value = cart
+                _cartLiveData.value = it
             }
 
         } catch (e: onedaycat.com.foodfantasyservicelib.error.Error) {
@@ -179,9 +177,8 @@ class FoodViewModel(private val eComService: EcomService
 
     suspend fun addProductToCart(input: AddToCartInput) {
         try {
-            val pQTY = eComService.cartGraphQLService.addProductToCart(input)
-
-            addCartToStore(pQTY)
+            val pQTY = eComService.cartService.addProductToCart(input)
+            addCartToStoreWithProductQTY(pQTY)
         } catch (e: Error) {
             _msgError.value = e.message
         }
@@ -195,17 +192,7 @@ class FoodViewModel(private val eComService: EcomService
     }
 
     fun initTotalPrice(foodModel: FoodModel) {
-        var qty = 1
-        cartStore.value?.foodCart?.cartList?.let { cartsModel ->
-            val index = cartsModel.indexOfFirst {
-                it.cartPId == foodModel.foodId
-            }
-
-            if (index != -1) {
-                qty = cartsModel[index].cartQTY
-            }
-        }
-
+        val qty = 1
         _foodSumModel.value = FoodSumModel().apply {
             this.qty = qty
             this.price = foodModel.foodPrice
@@ -302,7 +289,7 @@ class FoodViewModel(private val eComService: EcomService
         try {
             var order: Order? = null
 
-            asyncTask { order = eComService.paymentService.charge(input) }.await()
+            order = eComService.paymentService.charge(input)
 
             _pay.value = order
 

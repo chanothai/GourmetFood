@@ -19,13 +19,13 @@ import onedaycat.com.food.fantasy.R
 import onedaycat.com.food.fantasy.common.BaseActivity
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartStore
-import onedaycat.com.food.fantasy.ui.cart.fragment.CartFragment
 import onedaycat.com.food.fantasy.ui.mainfood.fragment.MainMenuFragment
 import onedaycat.com.food.fantasy.ui.order.fragment.OrderFragment
 import onedaycat.com.food.fantasy.ui.signin.SignInActivity
 import onedaycat.com.food.fantasy.util.CognitoUserHelper
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.food.fantasy.service.EcomService
+import onedaycat.com.food.fantasy.ui.cart.CartFragment
 import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
 
 class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener {
@@ -46,9 +46,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener {
         initViewModel()
         createBottomBar()
         if (savedInstanceState == null) {
-            replacedFragment(
-                    MainMenuFragment.newInstance(),
-                    "MainMenuFragment")
+            replacedFragment(MainMenuFragment.newInstance(), "MainMenuFragment")
         }
     }
 
@@ -158,7 +156,7 @@ class MainActivity : BaseActivity(), AHBottomNavigation.OnTabSelectedListener {
     override fun onResume() {
         super.onResume()
         with(CartStore) {
-            createBadgeCart(counter)
+            createBadgeCart(this.counter)
         }
     }
 

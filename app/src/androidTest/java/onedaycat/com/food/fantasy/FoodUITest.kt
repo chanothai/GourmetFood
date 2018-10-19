@@ -1,4 +1,4 @@
-package onedaycat.com.food.fantasy.fantasy.ui
+package onedaycat.com.food.fantasy
 
 import android.arch.lifecycle.MutableLiveData
 import android.support.test.espresso.Espresso.onView
@@ -11,14 +11,14 @@ import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
-import onedaycat.com.food.fantasy.R
 import onedaycat.com.food.fantasy.ui.mainfood.FoodListModel
 import onedaycat.com.food.fantasy.ui.mainfood.FoodModel
-import onedaycat.com.food.fantasy.mainfood.activity.MainActivity
 import onedaycat.com.food.fantasy.store.CartStore
 import onedaycat.com.food.fantasy.store.FoodCartStore
-import onedaycat.com.food.fantasy.fantasy.ui.cart.fragment.CartFragment
-import onedaycat.com.food.fantasy.fantasy.ui.order.fragment.OrderFragment
+import onedaycat.com.food.fantasy.ui.mainfood.FoodViewModel
+import onedaycat.com.food.fantasy.ui.mainfood.activity.MainActivity
+import onedaycat.com.food.fantasy.ui.order.*
+import onedaycat.com.food.fantasy.ui.order.fragment.OrderFragment
 import onedaycat.com.food.fantasy.util.ViewModelUtil
 import onedaycat.com.foodfantasyservicelib.entity.Cart
 import onedaycat.com.foodfantasyservicelib.entity.Order

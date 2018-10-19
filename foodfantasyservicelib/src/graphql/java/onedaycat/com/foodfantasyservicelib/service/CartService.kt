@@ -25,7 +25,10 @@ class CartService(
     }
 
     suspend fun getCarts(): Cart {
-        TODO()
+        return cartRepo.getAll()
+    }
 
+    suspend fun addProductsToCart(input: AddCartsToCartInput): Cart {
+        return Cart()
     }
 }
